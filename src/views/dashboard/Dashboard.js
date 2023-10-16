@@ -81,6 +81,7 @@ const Dashboard = () => {
     },
   }
   console.log('datasets: ', datasets)
+  console.log('See data..: ', "The Data")
   const [activeLines, setActiveLines] = useState(countries.map((country) => country)) // Initialize all lines as active
   const chartData = {
     labels,
