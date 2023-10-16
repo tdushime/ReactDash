@@ -111,7 +111,7 @@ const Dashboard = () => {
   console.log('countries: ', countries)
   console.log('chartData: ', chartData)
   console.log('hardData2: ', hardData)
-  console.log('See data..: ', "The Data")
+  console.log('See data..: ', 'The Data')
 
   function formatYAxisTick(value) {
     if (value >= 1000000000) {
