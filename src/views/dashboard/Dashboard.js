@@ -112,7 +112,7 @@ const Dashboard = () => {
   console.log('labels: ', labels)
   console.log('countries: ', countries)
   console.log('chartData: ', chartData)
-  console.log('hardData: ', hardData)
+  console.log('hardData2: ', hardData)
   console.log('See data..: ', "The Data")
 
   function formatYAxisTick(value) {
