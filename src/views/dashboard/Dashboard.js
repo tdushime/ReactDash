@@ -10,8 +10,8 @@ const Dashboard = () => {
   const [selectedCountries, setSelectedCountries] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    const csvFilePath = '/exports.csv'
-    //const csvFilePath = '/ReactDash/exports.csv'
+    //const csvFilePath = '/exports.csv'
+    const csvFilePath = '/ReactDash/exports.csv'
     Papa.parse(csvFilePath, {
       download: true,
       header: true,
