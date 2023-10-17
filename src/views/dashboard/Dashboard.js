@@ -10,7 +10,8 @@ const Dashboard = () => {
   const [selectedCountries, setSelectedCountries] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    const csvFilePath = '/ReactDash/exports.csv'
+    const csvFilePath = '/exports.csv'
+    //const csvFilePath = '/ReactDash/exports.csv'
     Papa.parse(csvFilePath, {
       download: true,
       header: true,
@@ -23,6 +24,15 @@ const Dashboard = () => {
   }, [])
   const labels = data && data[0] ? Object.keys(data[0]).filter((key) => /^\d{4}$/.test(key)) : []
   const countries = [...new Set(data.map((item) => item.country))].filter(Boolean)
+  const customColorPalette = [
+    '#0B5394',
+    '#741B47',
+    '#351C75',
+    '#38761D',
+    '#B45F06',
+    '#990000',
+    '#BF9000',
+  ]
   const datasets = countries
     .filter((country) => country !== null)
     .map((country, index) => {
@@ -31,8 +41,9 @@ const Dashboard = () => {
       return {
         label: country,
         data: countryDataArray,
-        backgroundColor: 'rgba(75, 192, 192, 0.2',
-        borderColor: 'rgba(${index * 50}, 192, 192, 1)',
+        backgroundColor: customColorPalette[index % customColorPalette.length],
+        borderColor: customColorPalette[index % customColorPalette.length],
+        pointBorderColor: customColorPalette[index % customColorPalette.length],
         fill: false,
       }
     })
@@ -122,12 +133,50 @@ const Dashboard = () => {
 
   return (
     <CRow>
-      <CCol xs={12}>
+      {/* <CCol xs={12}>
         <DocsCallout
           name="Chart"
           href="components/chart"
           content="React wrapper component for Chart.js 3.0, the most popular charting library."
         />
+      </CCol> */}
+      <CCol xs={12}>
+        <h1>Imports</h1>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader>Bar Chart</CCardHeader>
+          <CCardBody>
+            <CChartBar data={chartData} options={options} />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader>Line Chart</CCardHeader>
+          <CCardBody>
+            <CChartLine data={chartData} options={options} />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={12}>
+        <h1>Exports</h1>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader>Bar Chart</CCardHeader>
+          <CCardBody>
+            <CChartBar data={chartData} options={options} />
+          </CCardBody>
+        </CCard>
+      </CCol>
+      <CCol xs={6}>
+        <CCard className="mb-4">
+          <CCardHeader>Line Chart</CCardHeader>
+          <CCardBody>
+            <CChartLine data={chartData} options={options} />
+          </CCardBody>
+        </CCard>
       </CCol>
       <CCol xs={6}>
         <CCard className="mb-4">
@@ -181,22 +230,6 @@ const Dashboard = () => {
                 ],
               }}
             />
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={6}>
-        <CCard className="mb-4">
-          <CCardHeader>Bar Chart</CCardHeader>
-          <CCardBody>
-            <CChartBar data={chartData} options={options} />
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>Line Chart</CCardHeader>
-          <CCardBody>
-            <CChartLine data={chartData} options={options} />
           </CCardBody>
         </CCard>
       </CCol>
